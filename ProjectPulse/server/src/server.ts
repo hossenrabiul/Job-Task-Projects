@@ -3,6 +3,8 @@ import express, { Request, Response } from "express";
 
 import { connectDB } from "./config/DB";
 import { authRoute } from "./modules/auth/auth.routes";
+import { projectRoute } from "./modules/Projects/project.routes";
+import auth from "./middleware/auth";
 
 const app = express();
 app.use(express.json())
@@ -14,6 +16,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/v1/auth", authRoute)
 
+app.use("/api/v1/project",auth("Admin"), projectRoute)
 // app.use("/users", userRoute);
 
 // Conntect database
