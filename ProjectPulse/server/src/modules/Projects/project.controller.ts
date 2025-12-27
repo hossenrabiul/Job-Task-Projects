@@ -4,7 +4,7 @@ import { UserSchema } from "../../models/UserSchema.model";
 
 const createproject = async (req: Request, res: Response) => {
   const { clientId, employeeIds, startDate, endDate } = req.body;
-  console.log(clientId)
+  
   //   Valudate date
   if (new Date(startDate) > new Date(endDate)) {
     return res.status(400).json({
@@ -43,6 +43,24 @@ const createproject = async (req: Request, res: Response) => {
   }
 };
 
+const getProject = async (req : Request, res : Response) =>{
+  const {id} = req.params
+  try {
+    const project = await projectServices.getProject(id!)
+    res.status(200).json({
+      success : true,
+      message : 'Project retrived successfully',
+      data : project
+    })
+  } catch (error : any) {
+    res.status(500).json({
+      success : false,
+      message : 'Failed to retrive project',
+      error : error.message
+    })
+  }
+}
 export const projectController = {
   createproject,
+  getProject,
 };

@@ -1,4 +1,4 @@
-export function calculateHealtScore(status) {
+const calculateHealtScore = (status : string) =>{
   switch (status) {
     case "On Track":
       return 90;
@@ -12,3 +12,4 @@ export function calculateHealtScore(status) {
       return 80;
   }
 }
+export default calculateHealtScore

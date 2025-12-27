@@ -12,13 +12,13 @@ const projectSchema = new mongoose.Schema(
     },
     client: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "UserSchema",
+      ref: "user",
       required: true,
     },
     employees: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserSchema",
+        ref: "user",
         required: true,
       },
     ],

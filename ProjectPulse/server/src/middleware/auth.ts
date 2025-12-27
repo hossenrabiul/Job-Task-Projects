@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt, { decode, JwtPayload } from "jsonwebtoken";
 import { UserSchema } from "../models/UserSchema.model";
 
-const auth = (...roles: ("Admin" | "Client" | "Employee")[]) => {
+const auth = (...roles: ("admin" | "client" | "employee")[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const headers = req.headers.authorization;
@@ -11,7 +11,7 @@ const auth = (...roles: ("Admin" | "Client" | "Employee")[]) => {
         throw new Error("Unauthorized");
       }
       const token = headers.split(" ")[1];
-    //   console.log(headers)
+      // console.log(token)
       if (!token) {
         throw new Error("You are not authorized");
       }
